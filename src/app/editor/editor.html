@@ -1,0 +1,37 @@
+<fieldset style="margin: 10px 0">
+	<legend>Editor</legend>
+	<h3 style="margin: 0.5rem 0">Customer:</h3>
+	<form (submit)="updateName($event)" style="float: left; margin: 10px 0">
+		<label htmlFor='firstName'><input name="fName" placeholder="First name" /></label>
+		&nbsp;
+		<label htmlFor='lastName'><input name="lName" placeholder="Last name" /></label>
+		&nbsp;
+		<button type="submit">update customer</button>
+	</form>
+	<form (submit)="updatePhone($event)" style="clear: both; margin: 10px 0">
+		<label>New Phone: <input
+			max-length=10
+			min-length=10
+			name="phone"
+			placeholder="Empty or 10-digit integer"
+		/></label>
+		&nbsp;
+		<button type="submit">update phone</button>
+    </form>
+    <hr style="margin: 1.5rem 0" />
+    <form (submit)="updatePrice($event)" style="margin: 10px 0">
+        <label>New Price: <input name="price" /></label>
+        &nbsp;
+        <button type="submit">update price</button>
+	</form>
+	<form (submit)="updateColor($event)" style="margin: 10px 0">
+        <label>New Color: <input name="color" /></label>
+        &nbsp;
+        <button type="submit">update color</button>
+	</form>
+	<form (submit)="updateType($event)" style="margin: 10px 0">
+        <label>New Type: <input name="type" /></label>
+        &nbsp;
+        <button type="submit">update type</button>
+    </form>
+</fieldset>

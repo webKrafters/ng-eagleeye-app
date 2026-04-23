@@ -1,0 +1,14 @@
+:host > .reset-btn {
+	border: 1px solid var( --aquamarine );
+    background-color: var( --aquamarine );
+    border-radius: 4px;
+    color: #fff;
+	cursor: pointer;
+    font-size: .85rem;
+    font-weight: 700;
+    padding: 7px 20px;
+	&:hover {
+		background-color: var( --navy );
+		border: 1px solid var( --navy );
+	}
+}
