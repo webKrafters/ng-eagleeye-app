@@ -4,7 +4,7 @@
   "scripts": {
     "dev": "rm -rf dist && ng cache clean && npm run start",
     "ng": "ng",
-    "start": "ng serve",
+    "start": "ng serve --host 0.0.0.0",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
