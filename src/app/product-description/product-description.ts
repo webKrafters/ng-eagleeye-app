@@ -6,7 +6,7 @@ import {
 
 import { defaultDemoState } from '../../context-data';
 
-const selectorMap = { c: 'color', t: 'type' };
+const selectorMap = { c: 'color', t: 'type' } as const;
 
 type MyStreamService = StreamService<
   typeof defaultDemoState,

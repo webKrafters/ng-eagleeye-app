@@ -1,12 +1,12 @@
 <div style="margin: 20px 0 10px">
 	<div style="float: left; font-size: 1.75rem">
 		<span>Customer: </span>
-		@if( isEmpty( firstName() ) && isEmpty( lastName() ) ) {
+		@if( isEmpty( data.fName() ) && isEmpty( data.lName() ) ) {
 			<span>n.a.</span>
 		} @else {
-			<app-capitalized-display [text]="firstName()" />
+			<app-capitalized-display [text]="data.fName() ?? ''" />
 			&nbsp;
-			<app-capitalized-display [text]="lastName()" />
+			<app-capitalized-display [text]="data.lName() ?? ''" />
 		}
 	</div>
 	<div style="clear: both; padding-left: 3px">
@@ -17,18 +17,18 @@
 			<tr>
 				<td><label>Type:</label></td>
 				<td>
-					<app-capitalized-display [text]="type()" />
+					<app-capitalized-display [text]="data.type()" />
 				</td>
 			</tr>
 			<tr>
 				<td><label>Color:</label></td>
 				<td>
-					<app-capitalized-display [text]="color()" />
+					<app-capitalized-display [text]="data.color()" />
 				</td>
 			</tr>
 			<tr>
 				<td><label>Price:</label></td>
-				<td>{{ price() | tofixed : 2 }}</td>
+				<td>{{ data.price() | tofixed : 2 }}</td>
 			</tr>
 		</tbody>
 	</table>

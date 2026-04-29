@@ -4,7 +4,7 @@ import { defaultDemoState } from '../../context-data';
 import { provideStreamService, StreamService } from '@webkrafters/ng-eagleeye';
 import { TofixedPipe } from '../tofixed-pipe';
 
-const selectorMap = { p: 'price' };
+const selectorMap = { p: 'price' } as const;
 
 type MyStreamService = StreamService<
   typeof defaultDemoState,

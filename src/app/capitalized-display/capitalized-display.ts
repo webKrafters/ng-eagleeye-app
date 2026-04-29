@@ -10,6 +10,6 @@ import { UcfirstPipe } from '../ucfirst-pipe';
 export class CapitalizedDisplay {
   text = input<string>( '' );
   constructor() {
-    effect(() => console.log( `CapitalizedDisplay( ${ this.text } ) component rendered.....` ));
+    effect(() => console.log( `CapitalizedDisplay( ${ this.text() } ) component rendered.....` ));
   }
 }

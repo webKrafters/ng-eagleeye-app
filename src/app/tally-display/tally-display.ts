@@ -1,4 +1,4 @@
-import { Component, computed, effect, inject, Signal, signal } from '@angular/core';
+import { Component, effect, inject } from '@angular/core';
 
 import isEmpty from 'lodash.isempty';
 
@@ -13,10 +13,11 @@ import { TofixedPipe } from '../tofixed-pipe';
 
 const selectorMap = {
   color: 'color',
-  name: 'customer.name',
+  fName: 'customer.name.first',
+  lName: 'customer.name.last',
   price: 'price',
   type: 'type'
-};
+} as const;
 
 type State = typeof defaultDemoState;
 
@@ -40,14 +41,12 @@ export class TallyDisplay {
 
   streamService = inject<MyStreamService>( StreamService );
 
-  color = this.streamService.data.color as Signal<string>;
-  firstName = computed(() => ( this.streamService.data.name() as { first: string } ).first );
-  lastName = computed(() => ( this.streamService.data.name() as { last: string } ).last );
-  price = this.streamService.data.price as Signal<string>;
-  type = this.streamService.data.type as Signal<string>;
+	data : MyStreamService[ "data" ];
 
+  isEmpty = isEmpty;
+  
   constructor(){
+    this.data = this.streamService.data;
     effect(() => console.log( 'TallyDisplay component rendered.....' ));
   }
-  isEmpty( v : unknown ) { return isEmpty( v ) }
 }
