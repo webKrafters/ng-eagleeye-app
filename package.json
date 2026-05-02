@@ -24,7 +24,7 @@
     "@webkrafters/clone-total": "^1.0.1",
     "@webkrafters/eagleeye": "^1.0.6",
     "@webkrafters/get-property": "^2.0.0",
-    "@webkrafters/ng-eagleeye": "^1.0.0-alpha.3",
+    "@webkrafters/ng-eagleeye": "^1.0.0-rc.0",
     "@webkrafters/path-dotize": "^0.0.2",
     "@webkrafters/timed-map": "^2.0.0",
     "lodash.clonedeep": "^4.5.0",
