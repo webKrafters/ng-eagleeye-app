@@ -4,6 +4,7 @@ import { defaultDemoState } from '../../context-data';
 import { provideStreamService, StreamService } from '@webkrafters/ng-eagleeye';
 import { TofixedPipe } from '../tofixed-pipe';
 
+const clientId = 'PRICE STICKER';
 const selectorMap = { p: 'price' } as const;
 
 type MyStreamService = StreamService<
@@ -14,7 +15,7 @@ type MyStreamService = StreamService<
 @Component({
   imports: [ TofixedPipe ],
   selector: 'app-price-sticker',
-  providers: [ provideStreamService({ selectorMap }) ],
+  providers: [ provideStreamService({ clientId, selectorMap }) ],
   standalone: true,
   templateUrl: './price-sticker.html'
 })

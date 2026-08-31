@@ -6,6 +6,7 @@ import {
 
 import { defaultDemoState } from '../../context-data';
 
+const clientId = 'PRODUCT DESCRIPTION';
 const selectorMap = { c: 'color', t: 'type' } as const;
 
 type MyStreamService = StreamService<
@@ -15,7 +16,7 @@ type MyStreamService = StreamService<
 
 @Component({
   selector: 'app-product-description',
-  providers: [ provideStreamService({ selectorMap }) ],
+  providers: [ provideStreamService({ clientId, selectorMap }) ],
   standalone: true,
   templateUrl: './product-description.html'
 })

@@ -1,10 +1,8 @@
-import { Component, effect, inject, input } from '@angular/core';
+import { Component, computed, inject } from '@angular/core';
 
-import { ContextService, Prehooks } from '@webkrafters/ng-eagleeye';
+import { Changes, StreamService, provideStreamService } from '@webkrafters/ng-eagleeye';
 
 import { defaultDemoState } from '../../context-data';
-
-import { ContextWatchService } from '../context-watch-service';
 
 import { Editor } from '../editor/editor';
 import { TallyDisplay } from '../tally-display/tally-display';
@@ -13,39 +11,42 @@ import { ProductDescription } from '../product-description/product-description';
 
 type State = Partial<typeof defaultDemoState>;
 
+const clientId = 'PRODUCT';
+const selectorMap = { p: 'price' } as const;
+
 @Component({
-  selector: 'app-product',
   imports: [
     Editor,
     PriceSticker,
     ProductDescription,
     TallyDisplay
   ],
-  providers: [ ContextWatchService ],
+  providers: [ provideStreamService({ clientId, selectorMap }) ],
+  selector: 'app-product',
   standalone: true,
   templateUrl: './product.html'
 })
 export class Product {
 
-  contextService = inject<ContextService<State>>( ContextService );
-  contextWatchService = inject( ContextWatchService );
+  streamService = inject<StreamService<
+    State, typeof selectorMap
+  >>( StreamService );
 
-  prehooks = input<Prehooks<State>>( undefined as unknown as Prehooks<State> );
-  type = input<string>( undefined as unknown as string );
-
-  constructor() {
-    this.contextWatchService.watch();
-    effect(() => {
-      this.contextService.prehooks = this.prehooks();
-    });
-    effect(() => {
-      this.contextService.store.setState({ type: this.type() });
-    });
-  }
+  price = computed(() => {
+    const pVal = this.streamService.data.p();
+    return this.isNonZeroFalsy( pVal as number ) ? '' : pVal;
+  });
 
   overridePricing( e : KeyboardEvent ) {
-    this.contextService.store.setState({
-      price: Number( ( e.target as HTMLInputElement ).value )
-    })
+    const price = ( e.target as HTMLInputElement ).value;
+    !this.isNonZeroFalsy( price ) && this.streamService.setState({
+      price: Number( price )
+    } as Changes<State> )
+  }
+
+  private isNonZeroFalsy( val : string ) : boolean;
+  private isNonZeroFalsy( val : number ) : boolean;
+  private isNonZeroFalsy( val : any ) : boolean {
+    return !val && val !== 0 && val !== '0';
   }
 }

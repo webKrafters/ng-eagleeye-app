@@ -15,16 +15,33 @@
     <main>
       <h1>Demo</h1>
       <h2>A contrived product app.</h2>
+      <nav>
+        <!-- Use routerLink instead of href to prevent full page reloads -->
+        <a
+          routerLink="/"
+          routerLinkActive="active-class"
+          [routerLinkActiveOptions]="{exact: true}"
+        >
+          Home
+        </a>
+        <a
+          routerLink="/about"
+          routerLinkActive="active-class"
+        >
+          Product
+        </a>
+      </nav>
       <div style="margin-bottom: 10px">
         <label>
           Type:&nbsp;
           <input
             (keyup)="updateType($event)"
             placeholder="override product type here..."
+            [value]="productType()"
           >
         </label>
       </div>
-      <app-product [prehooks]="prehooks()" [type]="productType()" />
+      <router-outlet></router-outlet>
     </main>
   </div>
   <footer>

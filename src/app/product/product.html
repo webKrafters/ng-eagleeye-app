@@ -1,6 +1,6 @@
 <div>
 	<div style="margin-bottom: 10px">
-		<label>$ <input (keyup)="overridePricing($event)" placeholder="override price here..."></label>
+		<label>$ <input (keyup)="overridePricing($event)" placeholder="override price here..." [value]="price()"></label>
 	</div>
 	<div style="border-bottom: 1px solid #333; margin-bottom: 10px; padding-bottom: 5px">
 		<app-editor />

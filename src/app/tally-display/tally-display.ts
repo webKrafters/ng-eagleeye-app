@@ -11,6 +11,7 @@ import { CustomerPhoneDisplay } from '../customer-phone-display/customer-phone-d
 import { Reset } from '../reset/reset';
 import { TofixedPipe } from '../tofixed-pipe';
 
+const clientId = 'TALLY';
 const selectorMap = {
   color: 'color',
   fName: 'customer.name.first',
@@ -33,7 +34,7 @@ type MyStreamService = StreamService<
     CustomerPhoneDisplay,
     Reset
   ],
-  providers: [ provideStreamService({ selectorMap }) ],
+  providers: [ provideStreamService({ clientId, selectorMap }) ],
   standalone: true,
   templateUrl: './tally-display.html'
 })

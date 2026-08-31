@@ -1,5 +1,12 @@
-import { ApplicationConfig, provideBrowserGlobalErrorListeners } from '@angular/core';
-import { provideRouter } from '@angular/router';
+import {
+  ApplicationConfig,
+  provideBrowserGlobalErrorListeners
+} from '@angular/core';
+
+import {
+  provideRouter,
+  withComponentInputBinding
+} from '@angular/router';
 
 import { provideContextService } from '@webkrafters/ng-eagleeye';
 
@@ -15,6 +22,9 @@ export const appConfig: ApplicationConfig = {
         value: getDemoInitState()
       }
     }),
-    provideRouter(routes)
+    provideRouter(
+      routes,
+      withComponentInputBinding()
+    )
   ]
 };

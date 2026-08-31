@@ -1,14 +1,18 @@
 import { Component, effect, inject } from '@angular/core';
 import { provideStreamService, StreamService } from '@webkrafters/ng-eagleeye';
+import { defaultDemoState } from '../../context-data';
 
 @Component({
   selector: 'app-editor',
-  providers: [ provideStreamService() ],
+  providers: [ provideStreamService({ clientId: 'EDITOR' }) ],
   standalone: true,
   templateUrl: './editor.html'
 })
 export class Editor {
-  streamService = inject<StreamService>( StreamService );
+  streamService = inject<StreamService<
+    typeof defaultDemoState,
+    null
+  >>( StreamService );
   constructor() {
     effect(() => console.log( 'Editor component rendered.....' ));
   }
